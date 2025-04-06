@@ -67,7 +67,14 @@ class Deck:
 
     def shuffle(self)->None:
         shuffle(self.cards)
-        
+
+class Hand:
+    def __init__(self):
+        self.cards:List=[]
+
+    def list_cards(self):
+        for card in self.cards:
+            print(card) 
 class Room:
     def __init__(self):
         
@@ -90,17 +97,14 @@ class Room:
             self.draw_room(deck)
             self.runed:bool=True
     
+    def selct(self, position:int, hand:Hand):
+        pass #fare la selezione della carta
+    
     def list_cards(self):
         for card in self.cards:
             print(card)
 
-class Hand:
-    def __init__(self):
-        self.cards:List=[]
 
-    def list_cards(self):
-        for card in self.cards:
-            print(card) 
 
 class Discard_pile:
     def __init__(self):
@@ -133,10 +137,15 @@ def game():
             selected=input("select a card position (1-4), or run to run away from the room")
             if selected=="run":
                 room.run_away(deck)
+            elif type(selected) != "int":
+                print("The imput given is not a number n'or run")
         else:
             selected=input("select a card position (1-4)")
-        # devo controllare l'input selezionato 
-            print("The inputed number isnt")
+        if type(selected) != "int":
+            print("The imput given is not a number")
+        if selected>4 or selected<1:
+            print("The inputed number is not in range")
+        room.selct(selected,hand)
 
 
 if __name__=="__main__":
