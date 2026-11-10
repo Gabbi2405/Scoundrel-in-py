@@ -134,16 +134,23 @@ def game():
 
     while(True):
         if len(room.cards)==4 and not room.runed :
-            selected=input("select a card position (1-4), or run to run away from the room")
+            selected=input("select a card position (1-4), \nor \"run\" to run away from the room\n")
+            print(f"[DEBUG] selected value:\n{selected}")
             if selected=="run":
                 room.run_away(deck)
-            elif type(selected) != "int":
-                print("The imput given is not a number n'or run")
+            else:
+                try:
+                    print(type(selected))
+                    selected=int(selected)
+                    print(type(selected))
+                except Error as e:
+                    print(f"The imput given is not a number n'or run\nError raised:\n{e}")
+                
         else:
             selected=input("select a card position (1-4)")
-        if type(selected) != "int":
+        if type(selected) != int:
             print("The imput given is not a number")
-        if selected>4 or selected<1:
+        if selected>=4 and selected<=1:
             print("The inputed number is not in range")
         room.selct(selected,hand)
 
