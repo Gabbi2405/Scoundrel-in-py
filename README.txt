@@ -2,6 +2,8 @@
 The Scoundrel rules are made by Zach Gage and Kurt Bieg I just wrote some code to play it on devices
 # Todo
 fare funzione select in Room 
+fare funziine per togliere magic number 1 e 4 dentro il if che controlla la selezione dato che in.uno stato ci possono essre anche solo 2 carte.
+
 
 #ideal folder struct
 my_python_game/
