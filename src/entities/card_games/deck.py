@@ -6,7 +6,7 @@ class Deck:
     def __init__(self):
         self.cards: List[Card] = [Card(value, color) for value in range(1, 14) for color in ['heart', 'diamonds', 'spades', 'clubs']]
         '''Rimuove le carte non utili dal mazzo quindi ace jack queen e king di diamonds e heart'''
-        for value in [1,11,12,13]:
+        for value in [1,11,12,13]: #ToDo questo andrebbe spostato nella loggica di scoundrel se si vogiono fare altri giochi di carte
             for color in ["heart", "diamonds"]:
                 self.remove(value, color)
         shuffle(self.cards)

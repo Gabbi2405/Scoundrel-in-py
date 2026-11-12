@@ -1,7 +1,7 @@
 class Card:
-    def __init__(self, value:int, color:str):
+    def __init__(self, value:int, suit:str):
         self.value:int = value
-        self.color:str = color
+        self.suit:str = suit
     
     def __str__(self):
         value=self.value
@@ -14,13 +14,13 @@ class Card:
         elif value==1:
             value="Ace"
 
-        return f"{value} of {self.color}"
+        return f"{value} of {self.suit}"
     
     def __eq__(self, other):
-        return isinstance(other, Card) and self.value == other.value and self.color == other.color
+        return isinstance(other, Card) and self.value == other.value and self.suit == other.suit
 
     def __lt__(self, other):
         suit_order = {'heart': 0, 'diamonds': 1, 'spades': 2, 'clubs': 3}
-        if self.color == other.color:
+        if self.suit == other.suit:
             return self.value < other.value
-        return suit_order[self.color] < suit_order[other.color] 
+        return suit_order[self.suit] < suit_order[other.suit] 

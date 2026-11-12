@@ -8,10 +8,10 @@ from src.entities.scoundrel.hand import Hand
 
 
 def print_game_status(room:Room, hand:Hand,life:int):
-    print("Your life is actually:", life)
-    print("Rooom")
+    print("\nYour life is actually:", life)
+    print("Rooom:")
     room.print_cards()
-    print("Weapon equiped and moster defeated")
+    print("Weapon equiped and moster defeated:")
     hand.print_cards()
 
 
@@ -25,9 +25,11 @@ def check_selection(selected:str):
     except Exception as e:
         print("Error raised:\n{type(e)}")
         return "BREAK"
-    return selected
+    return selected-1
 
-
+def game_over():
+    #ToDo
+    print("hai perso")
 
 def game():
     deck=Deck()
@@ -38,11 +40,10 @@ def game():
     life=LIFEPOIN_MAX
     room.draw_room(deck)
 
-
     while(True):
         print_game_status(room,hand,life)
         if len(room.cards)==4 and not room.runed :
-            selected=input("select a card position (1-4), \nor \"run\" to run away from the room\n")
+            selected=input(f"select a card position (1-{room.card_number}), \nor \"run\" to run away from the room\n\n")
             #print(f"[DEBUG] selected value:\n{selected}")
             if selected=="run":
                 room.run_away(deck)
@@ -52,13 +53,20 @@ def game():
                 if selected=="CONTINUE": continue
                 if selected=="BREAK": break
         else:
-            selected=input("select a card position (1-4)")
+            selected=input(f"select a card position (1-{room.card_number})\n\n")
             selected=check_selection(selected)
             if selected=="CONTINUE": continue
             if selected=="BREAK": break
-        if selected>=4 and selected<=1:
+        if selected>room.card_number or selected<1:
             print("The inputed number is not in range")
-        room.selct(selected,hand)
+        life+=room.selct(selected,hand,discard)
+        if life>LIFEPOIN_MAX: life=LIFEPOIN_MAX
+        elif life<1: 
+            game_over()
+            break
+        room.check(deck)
+        
+        
 
 
 if __name__=="__main__":
