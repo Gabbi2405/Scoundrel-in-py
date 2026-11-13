@@ -59,12 +59,13 @@ def game():
             if selected=="BREAK": break
         if selected>room.card_number or selected<1:
             print("The inputed number is not in range")
-        life+=room.selct(selected,hand,discard)
-        if life>LIFEPOIN_MAX: life=LIFEPOIN_MAX
-        elif life<1: 
-            game_over()
-            break
-        room.check(deck)
+        else:
+            life+=room.selct(selected,hand,discard)
+            if life>LIFEPOIN_MAX: life=LIFEPOIN_MAX
+            elif life<1: 
+                game_over()
+                break
+            room.check(deck)
         
         
 

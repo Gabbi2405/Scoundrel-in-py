@@ -42,8 +42,9 @@ class Room:
             
             return card_value
         elif hand.weapon:
-            last_defeated_value=hand.cards[hand.card_number-1].value
-            if last_defeated_value==1: last_defeated_value=14
+            if not hand.card_number==0:
+                last_defeated_value=hand.cards[hand.card_number-1].value
+                if last_defeated_value==1: last_defeated_value=14
             
             if hand.card_number==0 or card_value< last_defeated_value :
                 hand.add_card(selected_card)
