@@ -7,7 +7,7 @@ class Deck:
         self.cards: List[Card] = [Card(value, color) for value in range(1, 14) for color in ['heart', 'diamonds', 'spades', 'clubs']]
 
         shuffle(self.cards)
-        self.card_number=56
+        self.card_number=52
         self.joker_number=0
 
     def __str__(self):
@@ -22,22 +22,26 @@ class Deck:
 
     def add_card(self,catd:Card):
         self.cards.append(card)
+        self.card_number+=1
 
     def remove(self, value:int, color:str)->None:
         card= Card(value, color)
         if card in self.cards:
             self.cards.remove(card)
+            self.card_number-=0
 
     def draw_specific_card(self, value:int, color:str)->Card:
         card=Card(value,color)
         if card in  self.cards:
             self.remove(value, color)
+            self.card_number-=1
             return card
         else:   
             raise IndexError("Card not in Deck")
     
     def pop_first(self)->Card:
-        if not cards: #check if cards is empty
+        if self.cards: #check if cards is empty
+            self.card_number-=1
             return self.cards.pop(0)
         else:
             raise Exception("No more card in the deck")

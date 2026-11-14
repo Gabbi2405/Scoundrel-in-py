@@ -15,8 +15,8 @@ class Room:
         
     def draw_room(self, deck:Deck):
         CARD_MAX=4
-        while self.card_number < CARD_MAX:
-            self.cards.append(deck.cards.pop(0))
+        while self.card_number < CARD_MAX and deck.get_card_number!=0:
+            self.cards.append(deck.pop_first())
             self.card_number+=1
         self.runed=False
 
@@ -34,6 +34,7 @@ class Room:
         self.card_number -=1
         self.runed=True
         card_value=selected_card.value
+        print(f"[DEBUG] {position}")
         if card_value==1: card_value=14
         if selected_card.suit=="diamonds":
             hand.equip(selected_card, discard)
