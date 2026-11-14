@@ -82,7 +82,11 @@ def game():
             elif life<1: 
                 game_over()
                 break
-            room.check(deck)
+        room.check(deck)
+        if(deck.get_card_number()==0 and room.card_number==0):
+            print("Well done you won!!")
+            break
+            
         
         
 

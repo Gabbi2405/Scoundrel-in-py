@@ -28,7 +28,7 @@ class Deck:
         card= Card(value, color)
         if card in self.cards:
             self.cards.remove(card)
-            self.card_number-=0
+            self.card_number-=1
 
     def draw_specific_card(self, value:int, color:str)->Card:
         card=Card(value,color)
@@ -43,8 +43,8 @@ class Deck:
         if self.cards: #check if cards is empty
             self.card_number-=1
             return self.cards.pop(0)
-        else:
-            raise Exception("No more card in the deck")
+        #else:
+            #raise Exception("No more card in the deck")
             return -1
     def get_card_number(self):
         return self.card_number

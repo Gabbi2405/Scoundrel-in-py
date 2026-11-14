@@ -16,7 +16,9 @@ class Room:
     def draw_room(self, deck:Deck):
         CARD_MAX=4
         while self.card_number < CARD_MAX and deck.get_card_number!=0:
-            self.cards.append(deck.pop_first())
+            card=deck.pop_first()
+            if not card: break
+            self.cards.append(card)
             self.card_number+=1
         self.runed=False
 
@@ -24,6 +26,7 @@ class Room:
         if(not self.runed):
             deck.cards.extend(self.cards)
             self.cards.clear()
+            deck.card_number+=self.card_number
             self.card_number=0
             self.draw_room(deck)
             self.runed:bool=True
