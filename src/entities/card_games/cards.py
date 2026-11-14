@@ -13,6 +13,8 @@ class Card:
             value="King"
         elif value==1:
             value="Ace"
+        elif value==0:
+            value="joker"
 
         return f"{value} of {self.suit}"
     

@@ -27,12 +27,21 @@ def check_selection(selected:str):
         return "BREAK"
     return selected-1
 
+def prepare_deck(deck:Deck):
+    '''Rimuove le carte non utili dal mazzo quindi ace jack queen e king di diamonds e heart'''
+    for value in [1,11,12,13]:
+        for color in ["heart", "diamonds"]:
+            print(f"[DEBUG]:\n\tvalue: {value}\n\tcolor:{color}")
+            deck.remove(value, color)
+    deck.shuffle()
+
 def game_over():
     #ToDo
     print("hai perso")
 
 def game():
     deck=Deck()
+    prepare_deck(deck)
     room=Room()
     hand=Hand()
     discard=DiscardPile()

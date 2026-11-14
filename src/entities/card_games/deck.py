@@ -5,11 +5,10 @@ from src.entities.card_games.cards import Card
 class Deck:
     def __init__(self):
         self.cards: List[Card] = [Card(value, color) for value in range(1, 14) for color in ['heart', 'diamonds', 'spades', 'clubs']]
-        '''Rimuove le carte non utili dal mazzo quindi ace jack queen e king di diamonds e heart'''
-        for value in [1,11,12,13]: #ToDo questo andrebbe spostato nella loggica di scoundrel se si vogiono fare altri giochi di carte
-            for color in ["heart", "diamonds"]:
-                self.remove(value, color)
+
         shuffle(self.cards)
+        self.card_number=56
+        self.joker_number=0
 
     def __str__(self):
         return f"cards: {self.cards}"
@@ -21,21 +20,48 @@ class Deck:
     def sort(self):
         self.cards.sort()
 
+    def add_card(self,catd:Card):
+        self.cards.append(card)
+
     def remove(self, value:int, color:str)->None:
         card= Card(value, color)
         if card in self.cards:
             self.cards.remove(card)
 
-    def pop(self, value:int, color:str)->Card:
-        card_to_pop=Card(value,color)
-        if card_to_pop in  self.cards:
-            self.remove(card_to_pop)
-            return card_to_pop
+    def draw_specific_card(self, value:int, color:str)->Card:
+        card=Card(value,color)
+        if card in  self.cards:
+            self.remove(value, color)
+            return card
         else:   
             raise IndexError("Card not in Deck")
     
     def pop_first(self)->Card:
-        return self.cards.pop(0)
+        if not cards: #check if cards is empty
+            return self.cards.pop(0)
+        else:
+            raise Exception("No more card in the deck")
+            return -1
+    def get_card_number(self):
+        return card_number
 
     def shuffle(self)->None:
         shuffle(self.cards)
+        
+    def create_joker(self):
+        if joker_number==0:
+            new_joker=Card(0,"heart")
+            self.joker_number+=1
+            return new_joker
+            
+        elif joker_number==1:
+            new_joker=Card(0,"heart")
+            self.joker_number+=1
+            return new_joker
+        else:
+            raise Exception("All jokers already created")
+        
+    def add_joker(self):
+        joker=self.create_joker()
+        if joker:
+            self.add_card(joker)
