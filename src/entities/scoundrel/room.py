@@ -34,7 +34,7 @@ class Room:
         self.card_number -=1
         self.runed=True
         card_value=selected_card.value
-        print(f"[DEBUG] {position}")
+        #print(f"[DEBUG] {position}")
         if card_value==1: card_value=14
         if selected_card.suit=="diamonds":
             hand.equip(selected_card, discard)
