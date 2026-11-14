@@ -39,7 +39,7 @@ class Room:
             hand.equip(selected_card, discard)
             return 0
         elif selected_card.suit=="heart":
-            
+            discard.add_card(selected_card)
             return card_value
         elif hand.weapon:
             if not hand.card_number==0:
@@ -52,7 +52,7 @@ class Room:
                 if res>=0: return 0
                 return res
                 
-        discard.cards.append(selected_card)
+        discard.add_card(selected_card)
         return - selected_card.value
                 
         

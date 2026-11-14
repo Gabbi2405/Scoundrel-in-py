@@ -43,7 +43,7 @@ class Deck:
             raise Exception("No more card in the deck")
             return -1
     def get_card_number(self):
-        return card_number
+        return self.card_number
 
     def shuffle(self)->None:
         shuffle(self.cards)
